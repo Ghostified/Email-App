@@ -10,7 +10,7 @@ public class Email {
     private String department;
     private String email;
     private int defaultPasswordLength = 10 ;
-    private int mailBoxCapacity;
+    private int mailBoxCapacity = 500;
     private String alternateEmail;
     private String companySuffix = "hogwarts.com";
 
@@ -19,11 +19,10 @@ public class Email {
         //Instead of defining variables directly
         this.firstName = firstName;
         this.lastName = lastName;
-        System.out.println("Email Created: " + this.firstName + " " + this.lastName);
 
         //Call a method asking for the department, which will return the department
         this.department = setDepartment();
-        System.out.println("Department: " + this.department);
+
 
         ///call a method that returns a random password
         this.password = randomPassword(defaultPasswordLength);
@@ -31,13 +30,19 @@ public class Email {
 
         //combine elements to generate email id
         email = firstName.toLowerCase() + "." + lastName.toLowerCase() + "@" + department + "." + companySuffix;
-        System.out.println("Tour email is: " + email);
+
     }
 
     //Ask for the department as a method
     private  String setDepartment (){
         //Ask for user input for the department name
-        System.out.print("Department Codes\n1 For Sales \n2 For Development\n3 For Accounting\n0 For Nothing\nEnter Department Codes: ");
+        System.out.println("New Employee: " + firstName + " " + lastName + " ." +
+                "\nDepartment Codes" +
+                "\n1 For Sales " +
+                "\n2 For Development" +
+                "\n3 For Accounting" +
+                "\n0 For Nothing" +
+                "\nSelect Department Codes: ");
         Scanner in = new Scanner(System.in);
         int departmentChoice = in.nextInt();
         if (departmentChoice == 1){ return  "sales";}
@@ -54,16 +59,45 @@ public class Email {
         for (int i =0; i<length; i++) {
            int randomValue = (int) (Math.random() * passwordSet.length());
            password[i] = passwordSet.charAt(randomValue);
-           System.out.println(randomValue);
-           System.out.println(passwordSet.charAt(randomValue));
+
         }
         return new String(password);
     }
 
-
     //Set email box capacity
+    public void setMailBoxCapacity (int capacity){
+        this.mailBoxCapacity = capacity;
+        //System.out.println("Your mailbox capacity is " + capacity);
+    }
 
     //Set alternate email
+    public  void setAlternateEmail (String altEmail){
+        this.alternateEmail = altEmail;
+    }
 
     //Change the password
+    public  void changePassword (String password){
+        this.password = password;
+        //System.out.println("Your New password is : " + password);
+    }
+
+    //show mailbox capacity
+    public int getMailBoxCapacity () {
+        return mailBoxCapacity;
+    }
+
+    public String getAlternateEmail (){
+        return alternateEmail;
+    }
+
+    public String getPassword (){
+        return  password;
+    }
+
+    //Method to return all the information: Name, email, mailbox Capacity
+    public String showInfo() {
+        return "Display Name: " + firstName +" " + lastName +
+                "\nCompany Email: " + email +
+                "\nMail-Box Capacity: " + mailBoxCapacity + " MB.";
+    }
 }

@@ -5,5 +5,12 @@ public class MainApp {
 
         //Create an object of the Email constructor
         Email mail1 = new Email("Harry", "Potter");
+
+        //Set Mailbox Capacity
+        mail1.setMailBoxCapacity(300);
+
+        //Show all Info
+        System.out.println(mail1.showInfo());
+
     }
 }
